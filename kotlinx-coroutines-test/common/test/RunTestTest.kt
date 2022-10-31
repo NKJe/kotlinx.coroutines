@@ -259,7 +259,7 @@ class RunTestTest {
         assertFailsWith<TimeoutCancellationException> { it() }
     }) {
         runTest {
-            withTimeout(50) {
+            kotlinx.coroutines.time.withTimeout<Unit>(50) {
                 launch {
                     delay(1000)
                 }

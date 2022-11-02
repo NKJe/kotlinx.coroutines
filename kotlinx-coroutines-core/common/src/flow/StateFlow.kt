@@ -193,7 +193,7 @@ public fun <T> MutableStateFlow(value: T): MutableStateFlow<T> = StateFlowImpl(v
  *
  * [function] may be evaluated multiple times, if [value] is being concurrently updated.
  */
-public inline fun <T> MutableStateFlow<T>.updateAndGet(function: (T) -> T): T {
+public inline fun <T, R : T> MutableStateFlow<T>.updateAndGet(function: (T) -> R): R {
     while (true) {
         val prevValue = value
         val nextValue = function(prevValue)
